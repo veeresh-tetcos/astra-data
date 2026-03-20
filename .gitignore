@@ -1,0 +1,8 @@
+# WorldCover raster tiles (large, downloaded on demand)
+data/worldcover/
+*.tif
+*.tiff
+
+# Python
+__pycache__/
+*.pyc
