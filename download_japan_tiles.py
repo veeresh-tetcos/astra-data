@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-Download all ESA WorldCover tiles for India.
+Download all ESA WorldCover tiles for Japan.
 
-India geographic extent:
-- Latitude: 6°N to 37°N
-- Longitude: 66°E to 97°E
+Japan geographic extent (approximate):
+- Latitude: 24°N to 48°N
+- Longitude: 122°E to 156°E
 
 Usage:
-    python utilities/download_india_tiles.py
+    python utilities/download_japan_tiles.py
 """
 
 import sys
@@ -24,13 +24,13 @@ WORLDCOVER_DIR = Path(__file__).parent.parent / "astra-data" / "data" / "worldco
 
 
 def main():
-    """Download all India tiles."""
+    """Download all Japan tiles."""
     WORLDCOVER_DIR.mkdir(parents=True, exist_ok=True)
 
-    # India coverage: 6°N-37°N, 66°E-97°E
+    # Japan coverage (approx): 24°N-48°N, 122°E-156°E
     tiles_to_download = []
-    for lat in range(6, 39, 3):  # N06, N09, N12, N15, N18, N21, N24, N27, N30, N33, N36
-        for lon in range(66, 99, 3):  # E066, E069, E072, E075, E078, E081, E084, E087, E090, E093, E096
+    for lat in range(24, 49, 3):
+        for lon in range(122, 157, 3):
             tiles_to_download.append((lat, lon))
 
     total = len(tiles_to_download)
@@ -38,8 +38,8 @@ def main():
     skipped = 0
     failed = []
 
-    print(f"Downloading {total} tiles for India coverage...")
-    print("Estimated size: 1.2-1.5 GB\n")
+    print(f"Downloading {total} tiles for Japan coverage...")
+    print("Estimated size: ~0.5-2.0 GB depending on coverage\n")
 
     for i, (lat, lon) in enumerate(tiles_to_download, 1):
         tile_name = get_tile_name(lat, lon)
